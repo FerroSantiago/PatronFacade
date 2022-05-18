@@ -1,6 +1,6 @@
 import {Amplificador, ReproductorBluray, Luces, TV, Pochoclera ,Facade} from "../CineCaseroFacade" ;
 
-test('CuandoSeleccionarFuente_Deberia_ImrpimirFuente'), () => {
+test('CuandoSeleccionarFuente_Deberia_ImrpimirFuente', () => {
     let blueray = new ReproductorBluray();
     let amp = new Amplificador();
     let luces = new Luces();
@@ -9,4 +9,4 @@ test('CuandoSeleccionarFuente_Deberia_ImrpimirFuente'), () => {
 
     const cineCasero = new Facade(blueray, amp, luces, tv, pochoclera);
     expect(amp.seleccionarFuente).toBe('Fuente seleccionada= blueray');
-}
+})
