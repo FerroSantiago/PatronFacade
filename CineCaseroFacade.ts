@@ -1,77 +1,97 @@
 export class Amplificador{
+    public estado: boolean = false;
+
     encender(){
-        console.log("Prendiendo amplificador");
+        this.estado = true;
+        return ("Prendiendo amplificador");
     }
 
     apagar(){
-        console.log("Apagando amplificador");
+        this.estado = false;
+        return ("Apagando amplificador");
     }
 
     seleccionarFuente(fuente: string){
-        console.log("Fuente seleccionada= " + fuente);
+        return "Fuente seleccionada= " + fuente;
     }
 
     seleccionarVolumen(volumen : number){
-        console.log("Volumen seleccionado= " + volumen);
+        return ("Volumen seleccionado= " + volumen);
     }
 }
 
 export class ReproductorBluray{
+    public estado: boolean = false;
+
     encender(){
-        console.log("Prendiendo blueray");
+        this.estado = true;
+        return ("Prendiendo blueray");
     }
 
     apagar(){
-        console.log("Apagando blueray");
+        this.estado = false;
+        return ("Apagando blueray");
     }
 
     play(){
-        console.log("Reproduciendo disco");
+        return ("Reproduciendo disco");
     }
 }
 
 export class Luces{
+    public estado: boolean = true;
+
     oscurecer(){
-        console.log("Oscureciendo luces");
+        this.estado = false;
+        return ("Oscureciendo luces");
     }
     encender(){
-        console.log("Encendiendo luces");
+        this.estado = true;
+        return ("Encendiendo luces");
     }
 }
 
 export class TV{
+    public estado: boolean = false;
+    
     encender(){
-        console.log("Prendiendo TV");
+        this.estado = true;
+        return ("Prendiendo TV");
     }
     
     apagar(){
-        console.log("Apagando TV");
+        this.estado = false;
+        return ("Apagando TV");
     }
 }
 
 export class Pochoclera{
+    public estado: boolean = false;
+
     encender(){
-        console.log("Prendiendo pochoclera");
+        this.estado = true;
+        return ("Prendiendo pochoclera");
     }
     
     apagar(){
-        console.log("Apagando pochoclera");
+        this.estado = false;
+        return ("Apagando pochoclera");
     }
 
     pop(){
-        console.log("Reventando granos de maiz");
+        return ("Reventando granos de maiz");
     }
 }
 
 export class Facade{
-    private bluray: ReproductorBluray;
+    private blueray: ReproductorBluray;
     private amp: Amplificador;
     private luces: Luces;
     private tv: TV;
     private pochoclera: Pochoclera;
 
     constructor(blueray: ReproductorBluray, amp: Amplificador, luces: Luces, tv: TV, pochoclrea: Pochoclera){
-        this.bluray = blueray
+        this.blueray = blueray;
         this.amp = amp;
         this.luces = luces;
         this.tv = tv;
@@ -90,24 +110,15 @@ export class Facade{
         this.amp.seleccionarFuente("blueray");
         this.amp.seleccionarVolumen(5);
 
-        this.bluray.encender();
-        this.bluray.play();
+        this.blueray.encender();
+        this.blueray.play();
     }
 
     public terminarPelicula(){
         this.pochoclera.apagar();
         this.amp.apagar();
         this.tv.apagar();
-        this.bluray.apagar();
+        this.blueray.apagar();
         this.luces.encender();
     }
 }
-
-let blueray = new ReproductorBluray();
-let amp = new Amplificador();
-let luces = new Luces();
-let tv = new TV();
-let pochoclera = new Pochoclera();
-
-let cineCasero = new Facade(blueray, amp, luces, tv, pochoclera)
-cineCasero.verPelicula();
